@@ -13,8 +13,8 @@ public interface AsyncTask extends Runnable {
 
 	public static void main(String[] $){
 		AtomicInteger counter = new AtomicInteger();
-		define(task -> {
-			if(counter.getAndIncrement() >= 10) task.cancel();
+		define(self -> {
+			if(counter.getAndIncrement() >= 10) self.cancel();
 			else System.out.println();
 		}).executeTimer(20);
 	}

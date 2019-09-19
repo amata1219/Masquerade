@@ -8,6 +8,8 @@ public class UnanimatedSlot extends Slot {
 	 * ItemStack, Effect<Icon>
 	 * onClick
 	 */
+	
+	private Effect<Icon> effect;
 
 	@Override
 	public Icon build() {

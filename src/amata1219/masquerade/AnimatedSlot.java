@@ -4,23 +4,29 @@ import java.util.ArrayList;
 
 public final class AnimatedSlot extends Slot {
 
-	private final ArrayList<Effect<Icon>> effects = new ArrayList<>();
-	private final Icon icon = new Icon();
-	private int index;
+	private Effect<Icon> initializer;
+	private final ArrayList<Effect<Icon>> frames = new ArrayList<>();
+	private Icon icon;
+	private int frame;
 
 	@Override
 	public Icon build() {
-		return effects.get(index < effects.size() ? index++ : (index = 0)).apply(icon);
+		return frames.get(frame < frames.size() ? frame++ : (frame = 0)).apply(icon);
 	}
 
 	public AnimatedSlot init(Effect<Icon> effect){
-		effect.runFor(icon);
+		initializer = effect;
 		return this;
 	}
 
 	public AnimatedSlot after(Effect<Icon> effect){
-		effects.add(effect);
+		frames.add(effect);
 		return this;
+	}
+
+	public void reset(){
+		icon = initializer.apply(new Icon());
+		frame = 0;
 	}
 
 }
