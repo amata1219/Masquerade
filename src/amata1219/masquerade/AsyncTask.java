@@ -7,20 +7,20 @@ import java.util.function.Consumer;
 import org.bukkit.Bukkit;
 import org.bukkit.scheduler.BukkitTask;
 
-public interface Async extends Runnable {
+public interface AsyncTask extends Runnable {
 
-	static final HashMap<Async, BukkitTask> RUNNING_TASKS = new HashMap<>();
+	static final HashMap<AsyncTask, BukkitTask> RUNNING_TASKS = new HashMap<>();
 
 	public static void main(String[] $){
 		AtomicInteger counter = new AtomicInteger();
 		define(task -> {
 			if(counter.getAndIncrement() >= 10) task.cancel();
 			else System.out.println();
-		}).executeLater(100);
+		}).executeTimer(20);
 	}
 
-	public static Async define(Consumer<Async> processing){
-		Async task = new Async(){
+	public static AsyncTask define(Consumer<AsyncTask> processing){
+		AsyncTask task = new AsyncTask(){
 
 			@Override
 			public void run() {
