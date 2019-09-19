@@ -1,11 +1,19 @@
 package amata1219.masquerade;
 
+import amata1219.masquerade.event.ClickEvent;
+
 public abstract class Slot {
 
-	//Consumer<ClickEvent>
+	protected Effect<ClickEvent> actionOnClick;
 
 	public abstract Icon build();
 
-	//public void onClick(ClickEvent) { ~ }
+	public void onClick(Effect<ClickEvent> action){
+		actionOnClick = action;
+	}
+
+	public void fire(ClickEvent event){
+		actionOnClick.runFor(event);
+	}
 
 }
