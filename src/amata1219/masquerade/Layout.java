@@ -6,6 +6,9 @@ import java.util.function.Consumer;
 import java.util.function.Supplier;
 import java.util.stream.IntStream;
 
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
+import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
@@ -16,14 +19,37 @@ import amata1219.masquerade.event.OpenEvent;
 
 public class Layout implements InventoryUI {
 
+	public final Player player;
+	public final UI ui;
+	public final Option option;
+	public String title;
 	private final HashMap<Integer, Slot> slots = new HashMap<>();
 	private Supplier<Slot> defaultSlot;
 	private Consumer<OpenEvent> actionOnOpen;
 	private Consumer<ClickEvent> actionOnClick;
 	private Consumer<CloseEvent> actionOnClose;
-	
+
+	public Layout(Player player, UI ui, Option option){
+		this.player = player;
+		this.ui = ui;
+		this.option = option;
+	}
+
 	public Inventory buildInventory(){
-		
+		Inventory inventory = createInventory();
+		IntStream.range(0, inventory.getSize())
+		.forEach(index -> inventory.setItem(index, slotAt(index).build().toItemStack()));
+		return inventory;
+	}
+
+	private Inventory createInventory(){
+		if(option.type != null){
+			if(title != null) return Bukkit.createInventory(ui, option.type, title);
+			else return Bukkit.createInventory(ui, option.type);
+		}else{
+			if(title != null) return Bukkit.createInventory(ui, option.size, title);
+			else return Bukkit.createInventory(ui, option.size);
+		}
 	}
 
 	public Slot slotAt(int index){
@@ -91,7 +117,7 @@ public class Layout implements InventoryUI {
 		actionOnClose.accept(event);
 		event.ui.activeTasks.forEach(AsyncTask::cancel);
 	}
-	
-	
+
+
 
 }
