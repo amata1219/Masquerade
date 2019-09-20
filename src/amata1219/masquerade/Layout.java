@@ -1,9 +1,12 @@
 package amata1219.masquerade;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
+import java.util.stream.IntStream;
 
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 import amata1219.masquerade.Async.AsyncTask;
@@ -13,36 +16,34 @@ import amata1219.masquerade.event.OpenEvent;
 
 public class Layout implements InventoryUI {
 
-	/*
-	 * Map<Integer, Slot>
-	 *
-	 * Slot -> Animated/Unanimated
-	 *
-	 * Icon -> Pseudo ItemStack
-	 *
-	 *
-	 *
-	 *
-	 * Layout
-	 * - slots
-	 * - action(click, open, close)
-	 * - defaultSlot
-	 *
-	 * def(Effect<~>)
-	 * wrap: supplier(effect)
-	 *
-	 * on
-	 *
-	 */
-
 	private final HashMap<Integer, Slot> slots = new HashMap<>();
 	private Supplier<Slot> defaultSlot;
-	private Effect<OpenEvent> actionOnOpen;
-	private Effect<ClickEvent> actionOnClick;
-	private Effect<CloseEvent> actionOnClose;
+	private Consumer<OpenEvent> actionOnOpen;
+	private Consumer<ClickEvent> actionOnClick;
+	private Consumer<CloseEvent> actionOnClose;
+	
+	public Inventory buildInventory(){
+		
+	}
 
 	public Slot slotAt(int index){
 		return slots.containsKey(index) ? slots.get(index) : defaultSlot.get();
+	}
+
+	public void put(Effect<UnanimatedSlot> effect, IntStream indexes){
+		put(effect, indexes.toArray());
+	}
+
+	public void put(Effect<UnanimatedSlot> effect, int... indexes){
+		Arrays.stream(indexes).forEach(index -> slots.put(index, effect.apply(new UnanimatedSlot())));
+	}
+
+	public void put(int interval, Effect<AnimatedSlot> effect, IntStream indexes){
+		put(interval, effect, indexes.toArray());
+	}
+
+	public void put(int interval, Effect<AnimatedSlot> effect, int... indexes){
+		Arrays.stream(indexes).forEach(index -> slots.put(index, effect.apply(new AnimatedSlot(interval))));
 	}
 
 	public void defaultSlot(Effect<UnanimatedSlot> effect){
@@ -53,7 +54,7 @@ public class Layout implements InventoryUI {
 		defaultSlot = () -> effect.apply(new AnimatedSlot(interval));
 	}
 
-	public void onOpen(Effect<OpenEvent> action){
+	public void onOpen(Consumer<OpenEvent> action){
 		actionOnOpen = action;
 	}
 
@@ -71,24 +72,26 @@ public class Layout implements InventoryUI {
 			task.executeTimer(slot.interval);
 			event.ui.activeTasks.add(task);
 		});
-		actionOnOpen.runFor(event);
+		actionOnOpen.accept(event);
 	}
 
-	public void onClick(Effect<ClickEvent> action){
+	public void onClick(Consumer<ClickEvent> action){
 		actionOnClick = action;
 	}
 
 	public void fire(ClickEvent event){
-		actionOnClick.runFor(event);
+		actionOnClick.accept(event);
 	}
 
-	public void onClose(Effect<CloseEvent> action){
+	public void onClose(Consumer<CloseEvent> action){
 		actionOnClose = action;
 	}
 
 	public void fire(CloseEvent event){
-		actionOnClose.runFor(event);
+		actionOnClose.accept(event);
 		event.ui.activeTasks.forEach(AsyncTask::cancel);
 	}
+	
+	
 
 }
