@@ -8,7 +8,6 @@ import java.util.stream.IntStream;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
-import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
@@ -17,7 +16,7 @@ import amata1219.masquerade.event.ClickEvent;
 import amata1219.masquerade.event.CloseEvent;
 import amata1219.masquerade.event.OpenEvent;
 
-public class Layout implements InventoryUI {
+public class Layout {
 
 	public final Player player;
 	public final UI ui;
@@ -117,7 +116,5 @@ public class Layout implements InventoryUI {
 		actionOnClose.accept(event);
 		event.ui.activeTasks.forEach(AsyncTask::cancel);
 	}
-
-
 
 }
