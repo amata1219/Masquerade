@@ -1,4 +1,4 @@
-package amata1219.masquerade;
+package amata1219.masquerade.dsl;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -11,6 +11,10 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
+import amata1219.masquerade.Async;
+import amata1219.masquerade.Effect;
+import amata1219.masquerade.Option;
+import amata1219.masquerade.UI;
 import amata1219.masquerade.Async.AsyncTask;
 import amata1219.masquerade.event.ClickEvent;
 import amata1219.masquerade.event.CloseEvent;

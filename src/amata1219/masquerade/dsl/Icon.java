@@ -1,4 +1,4 @@
-package amata1219.masquerade;
+package amata1219.masquerade.dsl;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -15,6 +15,8 @@ import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import com.google.common.collect.Iterables;
+
+import amata1219.masquerade.Effect;
 
 public class Icon {
 

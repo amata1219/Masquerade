@@ -6,6 +6,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 
+import amata1219.masquerade.dsl.Layout;
+
 public interface InventoryUI extends InventoryHolder {
 
 	default void open(Player player){

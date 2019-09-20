@@ -7,6 +7,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryType;
 
 import amata1219.masquerade.Async.AsyncTask;
+import amata1219.masquerade.dsl.Layout;
 
 public abstract class UI implements InventoryUI {
 

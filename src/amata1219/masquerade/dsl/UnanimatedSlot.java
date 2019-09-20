@@ -1,4 +1,6 @@
-package amata1219.masquerade;
+package amata1219.masquerade.dsl;
+
+import amata1219.masquerade.Effect;
 
 public class UnanimatedSlot extends Slot {
 
