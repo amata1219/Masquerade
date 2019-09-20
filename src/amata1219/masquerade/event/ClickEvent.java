@@ -1,5 +1,5 @@
 package amata1219.masquerade.event;
 
-public class ClickEvent {
+public class ClickEvent extends UIEvent {
 
 }

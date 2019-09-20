@@ -4,14 +4,16 @@ import java.util.ArrayList;
 
 public final class AnimatedSlot extends Slot {
 
-	private Icon icon;
-	private int frameCount;
 	private Effect<Icon> defaultIcon;
 	private final ArrayList<Effect<Icon>> frames = new ArrayList<>();
 
 	@Override
 	public Icon build() {
-		return frames.get(frameCount < frames.size() ? frameCount++ : (frameCount = 0)).apply(icon);
+		return defaultIcon.apply(new Icon());
+	}
+
+	public Icon build(int frameCount){
+		return frames.get(frameCount).apply(build());
 	}
 
 	public AnimatedSlot def(Effect<Icon> effect){
@@ -24,9 +26,8 @@ public final class AnimatedSlot extends Slot {
 		return this;
 	}
 
-	public void reset(){
-		icon = defaultIcon.apply(new Icon());
-		frameCount = 0;
+	public int frames(){
+		return frames.size();
 	}
 
 }
