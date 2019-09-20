@@ -9,12 +9,16 @@ public interface Async extends Runnable {
 
 	public static void main(String[] $){
 		define(self -> {
-			if(self.count() >= 10) self.cancel();
-			else System.out.println();
+			if(self.count() < 10) System.out.println();
+			else self.cancel();
 		}).executeTimer(20);
 	}
 
 	void process();
+
+	public static AsyncTask define(Async task){
+		return define(self -> task.process());
+	}
 
 	public static AsyncTask define(Consumer<AsyncTask> processing){
 		AsyncTask task = new AsyncTask(){
@@ -26,10 +30,6 @@ public interface Async extends Runnable {
 
 		};
 		return task;
-	}
-
-	public static Async define(Async task){
-		return define(self -> task.process());
 	}
 
 	static abstract class AsyncTask implements Async {
