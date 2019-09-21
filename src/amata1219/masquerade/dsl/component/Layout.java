@@ -1,5 +1,6 @@
 package amata1219.masquerade.dsl.component;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.function.Consumer;
@@ -11,7 +12,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-import amata1219.masquerade.dsl.InventoryUI.AbstractUI;
 import amata1219.masquerade.event.ClickEvent;
 import amata1219.masquerade.event.CloseEvent;
 import amata1219.masquerade.event.OpenEvent;
@@ -21,20 +21,17 @@ import amata1219.masquerade.util.Async.AsyncTask;
 
 public class Layout {
 
-	public final AbstractUI ui;
 	public final Option option;
-	public final Player player;
 	public String title;
 	private final HashMap<Integer, Slot> slots = new HashMap<>();
 	private Supplier<Slot> defaultSlot;
 	private Consumer<OpenEvent> actionOnOpen;
 	private Consumer<ClickEvent> actionOnClick;
 	private Consumer<CloseEvent> actionOnClose;
+	public final ArrayList<AsyncTask> activeTasks = new ArrayList<>();
 
-	public Layout(AbstractUI ui, Option option, Player player){
-		this.ui = ui;
+	public Layout(Option option){
 		this.option = option;
-		this.player = player;
 	}
 
 	public Inventory buildInventory(){
@@ -98,7 +95,7 @@ public class Layout {
 				event.inventory.setItem(entry.getKey(), item);
 			});
 			task.executeTimer(slot.interval);
-			event.ui.activeTasks.add(task);
+			activeTasks.add(task);
 		});
 		actionOnOpen.accept(event);
 	}
@@ -117,7 +114,7 @@ public class Layout {
 
 	public void fire(CloseEvent event){
 		actionOnClose.accept(event);
-		event.ui.activeTasks.forEach(AsyncTask::cancel);
+		activeTasks.forEach(AsyncTask::cancel);
 	}
 
 }

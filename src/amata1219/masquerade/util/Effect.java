@@ -2,11 +2,11 @@ package amata1219.masquerade.util;
 
 public interface Effect<T> {
 
-	default T apply(T object){
-		runFor(object);
-		return object;
+	default T apply(T t){
+		runFor(t);
+		return t;
 	}
 
-	void runFor(T object);
+	void runFor(T t);
 
 }
