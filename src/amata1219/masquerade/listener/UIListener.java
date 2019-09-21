@@ -9,6 +9,14 @@ public class UIListener implements Listener {
 	 *
 	 * -> getholder
 	 * -> instanceof InventoryUI
+	 *
+	 * @クリックする度にLayoutがnewされる
+	 * →(l, p -> ～)
+	 * → AbstractUI ∋ Layout
+	 *
+	 * ...instanceof InventoryUI → AbstractUI
+	 * ui.layout.fire(～)
+	 *
 	 */
 
 }

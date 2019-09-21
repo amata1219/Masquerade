@@ -91,11 +91,11 @@ public class Layout {
 		.filter(entry -> entry.getValue() instanceof AnimatedSlot)
 		.forEach(entry -> {
 			AnimatedSlot slot = (AnimatedSlot) entry.getValue();
+			Icon icon = slot.build();
 			AsyncTask task = Async.define(self -> {
-				int index = entry.getKey();
-				Icon icon = slot.build();
-				ItemStack item = slot.apply(icon, (int) self.count() % slot.frames()).toItemStack();
-				event.inventory.setItem(index, item);
+				int frameCount = (int) self.count() % slot.frames();
+				ItemStack item = slot.apply(icon, frameCount).toItemStack();
+				event.inventory.setItem(entry.getKey(), item);
 			});
 			task.executeTimer(slot.interval);
 			event.ui.activeTasks.add(task);
