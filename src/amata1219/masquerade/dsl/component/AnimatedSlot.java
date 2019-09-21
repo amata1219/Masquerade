@@ -1,8 +1,8 @@
-package amata1219.masquerade.dsl;
+package amata1219.masquerade.dsl.component;
 
 import java.util.ArrayList;
 
-import amata1219.masquerade.Effect;
+import amata1219.masquerade.util.Effect;
 
 public final class AnimatedSlot extends Slot {
 

@@ -1,4 +1,4 @@
-package amata1219.masquerade;
+package amata1219.masquerade.util;
 
 public interface Effect<T> {
 

@@ -1,4 +1,4 @@
-package amata1219.masquerade.dsl;
+package amata1219.masquerade.dsl.component;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -11,20 +11,19 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-import amata1219.masquerade.Async;
-import amata1219.masquerade.Effect;
-import amata1219.masquerade.Option;
-import amata1219.masquerade.UI;
-import amata1219.masquerade.Async.AsyncTask;
+import amata1219.masquerade.dsl.InventoryUI.AbstractUI;
 import amata1219.masquerade.event.ClickEvent;
 import amata1219.masquerade.event.CloseEvent;
 import amata1219.masquerade.event.OpenEvent;
+import amata1219.masquerade.util.Async;
+import amata1219.masquerade.util.Effect;
+import amata1219.masquerade.util.Async.AsyncTask;
 
 public class Layout {
 
-	public final Player player;
-	public final UI ui;
+	public final AbstractUI ui;
 	public final Option option;
+	public final Player player;
 	public String title;
 	private final HashMap<Integer, Slot> slots = new HashMap<>();
 	private Supplier<Slot> defaultSlot;
@@ -32,10 +31,10 @@ public class Layout {
 	private Consumer<ClickEvent> actionOnClick;
 	private Consumer<CloseEvent> actionOnClose;
 
-	public Layout(Player player, UI ui, Option option){
-		this.player = player;
+	public Layout(AbstractUI ui, Option option, Player player){
 		this.ui = ui;
 		this.option = option;
+		this.player = player;
 	}
 
 	public Inventory buildInventory(){

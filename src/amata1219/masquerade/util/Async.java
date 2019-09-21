@@ -1,9 +1,11 @@
-package amata1219.masquerade;
+package amata1219.masquerade.util;
 
 import java.util.function.Consumer;
 
 import org.bukkit.Bukkit;
 import org.bukkit.scheduler.BukkitTask;
+
+import amata1219.masquerade.Masquerade;
 
 public interface Async extends Runnable {
 

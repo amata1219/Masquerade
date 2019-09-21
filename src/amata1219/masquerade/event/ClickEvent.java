@@ -9,11 +9,11 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryView;
 import org.bukkit.inventory.ItemStack;
 
-import amata1219.masquerade.UI;
+import amata1219.masquerade.dsl.InventoryUI.AbstractUI;
 
 public class ClickEvent {
 
-	public final UI ui;
+	public final AbstractUI ui;
 	public final Player player;
 	public final Inventory inventory;
 	public final InventoryAction action;
@@ -26,7 +26,7 @@ public class ClickEvent {
 	public final int hotbarButton;
 	public final InventoryView view;
 
-	public ClickEvent(UI ui, InventoryClickEvent event){
+	public ClickEvent(AbstractUI ui, InventoryClickEvent event){
 		this.ui = ui;
 		player = (Player) event.getWhoClicked();
 		inventory = event.getClickedInventory();

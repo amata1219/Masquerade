@@ -4,15 +4,15 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.inventory.Inventory;
 
-import amata1219.masquerade.UI;
+import amata1219.masquerade.dsl.InventoryUI.AbstractUI;
 
 public class CloseEvent {
 
-	public UI ui;
+	public AbstractUI ui;
 	public Player player;
 	public Inventory inventory;
 
-	public CloseEvent(UI ui, InventoryCloseEvent event){
+	public CloseEvent(AbstractUI ui, InventoryCloseEvent event){
 		this.ui = ui;
 		player = (Player) event.getView().getPlayer();
 		inventory = event.getInventory();
