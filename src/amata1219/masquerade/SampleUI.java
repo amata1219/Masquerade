@@ -18,7 +18,6 @@ public class SampleUI extends UI {
 			l.defaultSlot(20, s -> {
 				s.def(i -> {
 					i.type = Material.WHITE_WOOL;
-					i.displayName = "default";
 				})
 				.after(i -> {
 					i.type = Material.WHITE_WOOL;

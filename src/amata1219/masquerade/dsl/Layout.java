@@ -59,12 +59,12 @@ public class Layout {
 		return slots.containsKey(index) ? slots.get(index) : defaultSlot.get();
 	}
 
-	public void put(Effect<UnanimatedSlot> effect, IntStream indexes){
+	public void put(Effect<Slot> effect, IntStream indexes){
 		put(effect, indexes.toArray());
 	}
 
-	public void put(Effect<UnanimatedSlot> effect, int... indexes){
-		Arrays.stream(indexes).forEach(index -> slots.put(index, effect.apply(new UnanimatedSlot())));
+	public void put(Effect<Slot> effect, int... indexes){
+		Arrays.stream(indexes).forEach(index -> slots.put(index, effect.apply(new Slot())));
 	}
 
 	public void put(int interval, Effect<AnimatedSlot> effect, IntStream indexes){
@@ -75,8 +75,8 @@ public class Layout {
 		Arrays.stream(indexes).forEach(index -> slots.put(index, effect.apply(new AnimatedSlot(interval))));
 	}
 
-	public void defaultSlot(Effect<UnanimatedSlot> effect){
-		defaultSlot = () -> effect.apply(new UnanimatedSlot());
+	public void defaultSlot(Effect<Slot> effect){
+		defaultSlot = () -> effect.apply(new Slot());
 	}
 
 	public void defaultSlot(int interval, Effect<AnimatedSlot> effect){

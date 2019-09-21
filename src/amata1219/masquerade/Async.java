@@ -7,13 +7,6 @@ import org.bukkit.scheduler.BukkitTask;
 
 public interface Async extends Runnable {
 
-	public static void main(String[] $){
-		define(self -> {
-			if(self.count() < 10) System.out.println();
-			else self.cancel();
-		}).executeTimer(20);
-	}
-
 	void process();
 
 	public static AsyncTask define(Async task){
@@ -39,8 +32,8 @@ public interface Async extends Runnable {
 
 		@Override
 		public void run(){
-			count++;
 			process();
+			count++;
 		}
 
 		public void execute(){
