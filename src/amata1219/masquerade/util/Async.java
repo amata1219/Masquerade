@@ -9,17 +9,17 @@ import amata1219.masquerade.Masquerade;
 
 public interface Async extends Runnable {
 
-	void process();
+	void exe();
 
 	public static AsyncTask define(Async task){
-		return define(self -> task.process());
+		return define(self -> task.exe());
 	}
 
 	public static AsyncTask define(Consumer<AsyncTask> processing){
 		AsyncTask task = new AsyncTask(){
 
 			@Override
-			public void process() {
+			public void exe() {
 				processing.accept(this);
 			}
 
@@ -34,7 +34,7 @@ public interface Async extends Runnable {
 
 		@Override
 		public void run(){
-			process();
+			exe();
 			count++;
 		}
 

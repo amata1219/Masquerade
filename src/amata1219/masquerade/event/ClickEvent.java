@@ -37,15 +37,27 @@ public class ClickEvent {
 		view = event.getView();
 	}
 
-	public boolean isRightClick() {
+	public boolean isOutOfInventory(){
+		return inventory == null;
+	}
+
+	public boolean isCreativeAction(){
+		return clickType.isCreativeAction();
+	}
+
+	public boolean isKeyboardClick(){
+		return clickType.isKeyboardClick();
+	}
+
+	public boolean isRightClick(){
 		return clickType.isRightClick();
 	}
 
-	public boolean isLeftClick() {
+	public boolean isLeftClick(){
 		return clickType.isLeftClick();
 	}
 
-	public boolean isShiftClick() {
+	public boolean isShiftClick(){
 		return clickType.isShiftClick();
 	}
 

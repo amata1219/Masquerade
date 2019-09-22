@@ -7,6 +7,10 @@ import java.util.function.Consumer;
 import java.util.function.Supplier;
 import java.util.stream.IntStream;
 
+import org.bukkit.Bukkit;
+import org.bukkit.event.inventory.InventoryType;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 
 import amata1219.masquerade.event.ClickEvent;
@@ -16,7 +20,7 @@ import amata1219.masquerade.util.Async;
 import amata1219.masquerade.util.Effect;
 import amata1219.masquerade.util.Async.AsyncTask;
 
-public class Layout {
+public class Layout implements InventoryHolder {
 
 	public final Option option;
 	public String title;
@@ -25,10 +29,30 @@ public class Layout {
 	private Consumer<OpenEvent> actionOnOpen;
 	private Consumer<ClickEvent> actionOnClick;
 	private Consumer<CloseEvent> actionOnClose;
-	public final ArrayList<AsyncTask> activeTasks = new ArrayList<>();
+	private final ArrayList<AsyncTask> activeTasks = new ArrayList<>();
 
 	public Layout(Option option){
 		this.option = option;
+	}
+
+	@Override
+	public Inventory getInventory() {
+		return null;
+	}
+
+	public Inventory buildInventory(){
+		Inventory inventory = createInventory(option.type, option.size, title);
+		IntStream.range(0, inventory.getSize()).forEach(index -> inventory.setItem(index, slotAt(index).build().toItemStack()));
+		return inventory;
+	}
+
+	private Inventory createInventory(InventoryType type, int size, String title){
+		if(type != null)
+			if(title != null) return Bukkit.createInventory(this, type, title);
+			else return Bukkit.createInventory(this, type);
+		else
+			if(title != null) return Bukkit.createInventory(this, size, title);
+			else return Bukkit.createInventory(this, size);
 	}
 
 	public Slot slotAt(int index){
