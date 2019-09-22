@@ -1,12 +1,10 @@
 # *Masquerade*
->InventoryUI用ライブラリ
+> "InventoryUI用ライブラリ"
 InventoryUIを簡潔な記述で構築可能にするライブラリです。
 
 # 環境
-<dl>
-<dt>・Java8</dt>
-<dt>・Spigot 1.13.2</dt>
-</dl>
+- Java8
+- Spigot 1.13.2
 
 # 例
 ```Java
