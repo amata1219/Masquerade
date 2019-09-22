@@ -1,7 +1,7 @@
 package amata1219.masquerade.dsl.component;
 
+import amata1219.masquerade.effect.Effect;
 import amata1219.masquerade.event.ClickEvent;
-import amata1219.masquerade.util.Effect;
 
 public class Slot {
 

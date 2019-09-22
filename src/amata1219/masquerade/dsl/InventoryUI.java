@@ -6,8 +6,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryType;
 
 import amata1219.masquerade.dsl.component.Layout;
-import amata1219.masquerade.dsl.component.Lines;
-import amata1219.masquerade.dsl.component.Option;
+import amata1219.masquerade.option.Lines;
+import amata1219.masquerade.option.Option;
 
 public interface InventoryUI {
 

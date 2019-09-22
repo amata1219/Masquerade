@@ -1,4 +1,4 @@
-package amata1219.masquerade.dsl.component;
+package amata1219.masquerade.option;
 
 public enum Lines {
 

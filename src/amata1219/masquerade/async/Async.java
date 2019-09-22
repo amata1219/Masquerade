@@ -1,4 +1,4 @@
-package amata1219.masquerade.util;
+package amata1219.masquerade.async;
 
 import java.util.function.Consumer;
 

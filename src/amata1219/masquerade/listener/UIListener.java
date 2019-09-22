@@ -33,7 +33,7 @@ public class UIListener implements Listener {
 	}
 
 	private Maybe<Layout> cast(Inventory inventory){
-		return Maybe.unit(SafeCast.down(inventory.getHolder(), Layout.class));
+		return Maybe.unit(inventory).bind(Inventory::getHolder).bind(h -> SafeCast.down(h, Layout.class));
 	}
 
 }

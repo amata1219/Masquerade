@@ -1,4 +1,4 @@
-package amata1219.masquerade.dsl.component;
+package amata1219.masquerade.option;
 
 import org.bukkit.event.inventory.InventoryType;
 

@@ -16,7 +16,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import com.google.common.collect.Iterables;
 
-import amata1219.masquerade.util.Effect;
+import amata1219.masquerade.effect.Effect;
 
 public class Icon {
 
