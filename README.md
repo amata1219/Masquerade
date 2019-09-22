@@ -1,6 +1,5 @@
 # *Masquerade*
-> "InventoryUI用ライブラリ"
-InventoryUIを簡潔な記述で構築可能にするライブラリです。
+>InventoryUIを簡潔な記述で構築可能にするライブラリです。
 
 # 環境
 - Java8
