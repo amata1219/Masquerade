@@ -2,6 +2,10 @@
 >InventoryUI用ライブラリ
 InventoryUIを簡潔な記述で構築可能にするライブラリです。
 
+# 環境
+・Java8
+・Spigot 1.13.2
+
 # 例
 ```Java
 //InventoryUIを実装したクラスを定義する
@@ -14,7 +18,8 @@ public class SampleUI implements InventoryUI {
 
     @Override
     public Function<Player, Layout> layout() {
-        //2ライン設定のUIを構築する(InventoryTypeの指定も可能)
+        //InventoryUIのbuild()メソッドを使いUIを構築する
+        //Linesで何段表示するか指定出来る(InventoryTypeでの指定も可能)
         //playerはUIが表示されているプレイヤーを指す
         return build(Lines.x2, (player, l) -> {
             //インベントリのタイトル
