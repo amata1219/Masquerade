@@ -17,10 +17,11 @@ import org.bukkit.inventory.meta.ItemMeta;
 import com.google.common.collect.Iterables;
 
 import amata1219.masquerade.effect.Effect;
+import amata1219.masquerade.enchantment.GleamEnchantment;
 
 public class Icon {
 
-	public Material type;
+	public Material material;
 	public int amount = 1;
 	public int damage;
 	public String displayName;
@@ -31,7 +32,7 @@ public class Icon {
 	public Effect<ItemStack> effect;
 
 	public ItemStack toItemStack(){
-		ItemStack item = new ItemStack(type, amount);
+		ItemStack item = new ItemStack(material, amount);
 
 		ItemMeta meta = item.getItemMeta();
 		if(meta != null){
@@ -46,6 +47,10 @@ public class Icon {
 		if(effect != null) effect.apply(item);
 
 		return item;
+	}
+
+	public void gleam(){
+		enchantments.put(GleamEnchantment.INSTANCE, 1);
 	}
 
 }

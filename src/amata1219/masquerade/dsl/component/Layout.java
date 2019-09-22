@@ -11,9 +11,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
-import org.bukkit.inventory.ItemStack;
 
-import amata1219.masquerade.async.Async;
 import amata1219.masquerade.async.Async.AsyncTask;
 import amata1219.masquerade.effect.Effect;
 import amata1219.masquerade.event.ClickEvent;
@@ -91,16 +89,10 @@ public class Layout implements InventoryHolder {
 	public void fire(OpenEvent event){
 		slots.entrySet().stream()
 		.filter(entry -> entry.getValue() instanceof AnimatedSlot)
-		.forEach(entry -> {
-			AnimatedSlot slot = (AnimatedSlot) entry.getValue();
-			Icon icon = slot.build();
-			AsyncTask task = Async.define(self -> {
-				int frameCount = (int) self.count() % slot.frames();
-				ItemStack item = slot.apply(icon, frameCount).toItemStack();
-				event.inventory.setItem(entry.getKey(), item);
-			});
-			task.executeTimer(slot.interval);
-			activeTasks.add(task);
+		.map(entry -> ((AnimatedSlot) entry.getValue()).createTask(event.inventory, entry.getKey()))
+		.forEach(tuple -> {
+			tuple.first.executeTimer(tuple.second, 0);
+			activeTasks.add(tuple.first);
 		});
 		actionOnOpen.accept(event);
 	}

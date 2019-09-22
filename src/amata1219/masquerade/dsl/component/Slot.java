@@ -5,11 +5,15 @@ import amata1219.masquerade.event.ClickEvent;
 
 public class Slot {
 
-	protected Effect<Icon> defaultIcon;
+	protected Effect<Icon> icon;
 	protected Effect<ClickEvent> actionOnClick;
 
 	public Icon build() {
-		return defaultIcon.apply(new Icon());
+		return icon.apply(new Icon());
+	}
+
+	public void icon(Effect<Icon> icon){
+		this.icon = icon;
 	}
 
 	public void onClick(Effect<ClickEvent> action){

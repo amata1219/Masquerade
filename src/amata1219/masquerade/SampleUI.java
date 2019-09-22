@@ -2,6 +2,7 @@ package amata1219.masquerade;
 
 import java.util.function.Function;
 
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 
 import amata1219.masquerade.dsl.InventoryUI;
@@ -14,6 +15,7 @@ public class SampleUI implements InventoryUI {
 	public Function<Player, Layout> layout() {
 		return build(Lines.x2, (player, l) -> {
 			l.title = "Sample UI";
+			l.defaultSlot(s -> s.icon(i -> i.material = Material.LIGHT_GRAY_STAINED_GLASS_PANE));
 		});
 	}
 

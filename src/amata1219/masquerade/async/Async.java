@@ -27,7 +27,7 @@ public interface Async extends Runnable {
 		return task;
 	}
 
-	static abstract class AsyncTask implements Async {
+	public abstract class AsyncTask implements Async {
 
 		private BukkitTask activeTask;
 		private long count;
