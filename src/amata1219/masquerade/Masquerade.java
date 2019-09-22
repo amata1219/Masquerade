@@ -10,9 +10,9 @@ import org.bukkit.plugin.java.JavaPlugin;
 import amata1219.masquerade.dsl.component.Layout;
 import amata1219.masquerade.enchantment.GleamEnchantment;
 import amata1219.masquerade.listener.UIListener;
+import amata1219.masquerade.monad.Maybe;
 import amata1219.masquerade.reflection.Reflection;
-import graffiti.Maybe;
-import graffiti.SafeCast;
+import amata1219.masquerade.reflection.SafeCast;
 
 public class Masquerade extends JavaPlugin {
 
