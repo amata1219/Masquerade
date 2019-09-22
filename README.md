@@ -1,6 +1,6 @@
 # *Masquerade*
->InventoryUIを簡潔な記述で構築可能にするライブラリです。
->MaybeモナドやSafeCast、Tuple、Reflection等の便利クラスを同梱しています。
+>InventoryUIを簡潔な記述で構築可能にするライブラリです。  
+MaybeモナドやSafeCast、Tuple、Reflection等の便利クラスを同梱しています。
 
 # 環境
 - Java8
