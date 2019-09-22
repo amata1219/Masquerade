@@ -1,5 +1,6 @@
 # *Masquerade*
 >InventoryUIを簡潔な記述で構築可能にするライブラリです。
+>MaybeモナドやSafeCast、Tuple、Reflection等の便利クラスを同梱しています。
 
 # 環境
 - Java8
@@ -127,7 +128,3 @@ public class SampleUI implements InventoryUI {
         });
     }
 ```
-
-#その他
-より簡潔な表現が可能となる様にMaybeモナドやSafeCast、Tuple、Reflection等の便利クラスを同梱しています。
-
