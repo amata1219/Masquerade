@@ -22,14 +22,14 @@ import amata1219.masquerade.enchantment.GleamEnchantment;
 
 public class Icon {
 
-	public Material material;
+	public Material material = Material.AIR;
 	public int amount = 1;
 	public int damage;
 	public String displayName;
 	public List<String> lore = new ArrayList<>();
 	public Map<Enchantment, Integer> enchantments = new HashMap<>();
 	public Set<ItemFlag> flags = new HashSet<>();
-	public ItemStack based;
+	public ItemStack basedItemStack;
 	public Effect<ItemStack> raw;
 
 	public ItemStack toItemStack(){

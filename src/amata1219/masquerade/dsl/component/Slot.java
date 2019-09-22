@@ -6,7 +6,7 @@ import amata1219.masquerade.event.ClickEvent;
 public class Slot {
 
 	protected Effect<Icon> icon;
-	protected Effect<ClickEvent> actionOnClick;
+	protected Effect<ClickEvent> actionOnClick = __ -> {};
 
 	public Icon build() {
 		return icon.apply(new Icon());

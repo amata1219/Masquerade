@@ -7,7 +7,7 @@ import org.bukkit.inventory.Inventory;
 import amata1219.masquerade.async.Async;
 import amata1219.masquerade.async.Async.AsyncTask;
 import amata1219.masquerade.effect.Effect;
-import graffiti.Tuple;
+import amata1219.masquerade.tuplet.Tuple;
 
 public final class AnimatedSlot extends Slot {
 

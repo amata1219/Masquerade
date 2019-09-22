@@ -24,10 +24,10 @@ public class Layout implements InventoryHolder {
 	public final Option option;
 	public String title;
 	private final HashMap<Integer, Slot> slots = new HashMap<>();
-	private Supplier<Slot> defaultSlot;
-	private Consumer<OpenEvent> actionOnOpen;
-	private Consumer<ClickEvent> actionOnClick;
-	private Consumer<CloseEvent> actionOnClose;
+	private Supplier<Slot> defaultSlot = () -> new Slot();
+	private Consumer<OpenEvent> actionOnOpen = __ -> {};
+	private Consumer<ClickEvent> actionOnClick = __ -> {};
+	private Consumer<CloseEvent> actionOnClose = __ -> {};
 	private final ArrayList<AsyncTask> activeTasks = new ArrayList<>();
 
 	public Layout(Option option){

@@ -11,8 +11,8 @@ import amata1219.masquerade.dsl.component.Layout;
 import amata1219.masquerade.event.ClickEvent;
 import amata1219.masquerade.event.CloseEvent;
 import amata1219.masquerade.event.OpenEvent;
-import graffiti.Maybe;
-import graffiti.SafeCast;
+import amata1219.masquerade.monad.Maybe;
+import amata1219.masquerade.reflection.SafeCast;
 
 public class UIListener implements Listener {
 
@@ -23,8 +23,10 @@ public class UIListener implements Listener {
 
 	@EventHandler
 	public void onClick(InventoryClickEvent event){
-		cast(event.getClickedInventory()).ifJust(l -> l.fire(new ClickEvent(event)))
-		.ifNothing(() -> cast(event.getInventory()).ifJust(l -> l.fire(new ClickEvent(event))));
+		cast(event.getInventory()).ifJust(l -> {
+			event.setCancelled(true);
+			l.fire(new ClickEvent(event));
+		});
 	}
 
 	@EventHandler
