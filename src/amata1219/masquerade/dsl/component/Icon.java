@@ -1,6 +1,7 @@
 package amata1219.masquerade.dsl.component;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -29,7 +30,7 @@ public class Icon {
 	public Map<Enchantment, Integer> enchantments = new HashMap<>();
 	public Set<ItemFlag> flags = new HashSet<>();
 	public ItemStack based;
-	public Effect<ItemStack> effect;
+	public Effect<ItemStack> raw;
 
 	public ItemStack toItemStack(){
 		ItemStack item = new ItemStack(material, amount);
@@ -44,13 +45,25 @@ public class Icon {
 			item.setItemMeta(meta);
 		}
 
-		if(effect != null) effect.apply(item);
+		if(raw != null) raw.apply(item);
 
 		return item;
 	}
 
+	public void lore(String... lore){
+		this.lore.addAll(Arrays.asList(lore));
+	}
+
+	public void enchant(Enchantment enchantment, int level){
+		enchantments.put(enchantment, level);
+	}
+
 	public void gleam(){
-		enchantments.put(GleamEnchantment.INSTANCE, 1);
+		enchant(GleamEnchantment.INSTANCE, 1);
+	}
+
+	public void flag(ItemFlag... flags){
+		this.flags.addAll(Arrays.asList(flags));
 	}
 
 }

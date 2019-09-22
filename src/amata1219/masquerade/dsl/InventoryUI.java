@@ -2,6 +2,7 @@ package amata1219.masquerade.dsl;
 
 import java.util.function.Function;
 
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryType;
 
@@ -32,6 +33,10 @@ public interface InventoryUI {
 
 	default void open(Player player){
 		player.openInventory(layout().apply(player).buildInventory());
+	}
+
+	default void playSound(Player player, Sound sound, float volume, float pitch){
+		player.playSound(player.getLocation(), sound, volume, pitch);
 	}
 
 }

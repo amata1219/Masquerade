@@ -1,6 +1,5 @@
 package amata1219.masquerade.event;
 
-import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;
 import org.bukkit.event.inventory.InventoryAction;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -11,7 +10,6 @@ import org.bukkit.inventory.ItemStack;
 
 public class ClickEvent {
 
-	public final Player player;
 	public final Inventory inventory;
 	public final InventoryAction action;
 	public final ClickType clickType;
@@ -24,7 +22,6 @@ public class ClickEvent {
 	public final InventoryView view;
 
 	public ClickEvent(InventoryClickEvent event){
-		player = (Player) event.getWhoClicked();
 		inventory = event.getClickedInventory();
 		clickType = event.getClick();
 		slotType = event.getSlotType();

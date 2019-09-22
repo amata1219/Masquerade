@@ -18,14 +18,6 @@ public final class AnimatedSlot extends Slot {
 		this.interval = interval;
 	}
 
-	public Icon apply(Icon icon, int frameCount){
-		return frames.get(frameCount).apply(icon);
-	}
-
-	public int frames(){
-		return frames.size();
-	}
-
 	public AnimatedSlot def(Effect<Icon> effect){
 		icon = effect;
 		return this;
@@ -38,7 +30,7 @@ public final class AnimatedSlot extends Slot {
 
 	Tuple<AsyncTask, Integer> createTask(Inventory inventory, int index){
 		Icon icon = build();
-		AsyncTask task = Async.define(self -> inventory.setItem(index, apply(icon, (int) self.count() % frames()).toItemStack()));
+		AsyncTask task = Async.define(self -> inventory.setItem(index, frames.get((int) self.count() % frames.size()).apply(icon).toItemStack()));
 		return new Tuple<>(task, interval);
 	}
 
