@@ -20,7 +20,7 @@ public class SampleUI implements InventoryUI {
 	@Override
 	public Function<Player, Layout> layout() {
 		return build(Lines.x2, (player, l) -> {
-			l.title = "Sample UI";
+			l.title = "タイトル";
 
 			//スロット未設定のインデックスに適用される
 			l.defaultSlot(s -> s.icon(i -> i.material = Material.LIGHT_GRAY_STAINED_GLASS_PANE));
@@ -30,8 +30,12 @@ public class SampleUI implements InventoryUI {
 				s.icon(i -> {
 					i.material = Material.CHAINMAIL_HELMET;
 					i.damage = 128;
-					i.displayName = "";
-					i.lore("", "", "");
+					i.displayName = "表示名";
+					i.lore(
+						"1行目",
+						"2行目",
+						"3行目"
+					);
 					i.enchant(Enchantment.PROTECTION_ENVIRONMENTAL, 5);
 					i.gleam();
 					i.flag(ItemFlag.HIDE_ENCHANTS, ItemFlag.HIDE_UNBREAKABLE);
