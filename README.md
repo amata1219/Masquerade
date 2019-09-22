@@ -3,8 +3,10 @@
 InventoryUIを簡潔な記述で構築可能にするライブラリです。
 
 # 環境
-・Java8
-・Spigot 1.13.2
+<dl>
+<dt>・Java8</dt>
+<dt>・Spigot 1.13.2</dt>
+</dl>
 
 # 例
 ```Java
