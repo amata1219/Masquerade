@@ -1,8 +1,8 @@
 # *Masquerade*
 >InventoryUIを簡潔な記述で構築可能にするライブラリ
 
-BukkitのInventoryHolderを用いた対応付けによりInventoryUIを宣言的に定義可能としました。 
-各オブジェクトに一対一で処理を定義するため高い可読性と拡張性を併せ持った設計を実現出来ます。 
+BukkitのInventoryHolderを用いた対応付けによりInventoryUIを宣言的に定義可能としました。  
+各オブジェクトに一対一で処理を定義するため高い可読性と拡張性を併せ持った設計を実現出来ます。  
 TextやSkull、Tuple、Maybe、SafeCast、Reflection等の便利クラスを同梱し簡潔な実装をサポートします。
 
 ## 環境
