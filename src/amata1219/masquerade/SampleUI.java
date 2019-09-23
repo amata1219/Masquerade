@@ -8,11 +8,10 @@ import org.bukkit.Sound;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemFlag;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.SkullMeta;
 
 import amata1219.masquerade.dsl.InventoryUI;
 import amata1219.masquerade.dsl.component.Layout;
+import amata1219.masquerade.item.Skull;
 import amata1219.masquerade.option.Lines;
 import amata1219.masquerade.text.Text;
 
@@ -35,13 +34,15 @@ public class SampleUI implements InventoryUI {
 			//未設定のスロットに適用される設定
 			l.defaultSlot(s -> {
 				s.icon(i -> {
-					//名前無しの薄灰色ガラスはインベントリの背景色と同化するのでオススメ
+					//薄灰色ガラスはインベントリの背景色と同化するためオススメの設定
 					i.material = Material.LIGHT_GRAY_STAINED_GLASS_PANE;
 					i.displayName = " ";
 				});
 
 				//このスロットをクリックした時に実行される処理
-				s.onClick(e -> player.sendMessage("Hi!"));
+				//playSound()を使うと座標指定無しの簡潔な記述で音を再生出来る
+				//クリック処理のキャンセルはMasquerade側で行われている
+				s.onClick(e -> playSound(player, Sound.UI_BUTTON_CLICK, 1, 1));
 			});
 
 			//0番目のスロットに適用される設定
@@ -59,9 +60,10 @@ public class SampleUI implements InventoryUI {
 					//説明文
 					i.lore(
 						"Level @ " + player.getLevel(),
-						//装飾コードや複数の結合演算を用いる場合はTextを利用すると楽に記述出来る
+						
+						//装飾コードや複数の結合演算子を用いる場合はTextを使用すると楽に記述出来る
 						//視認性向上の為に装飾コードは&とし、その左右1文字分には-を置けるがそれは実際には表示されない
-						//§fRank in 0 §7@ §b0
+						//§fRank in world §7@ §b0
 						Text.of("&f-Rank in %s &7-@ &b-%s").color().format(player.getWorld().getName(), player.getLevel()).toString()
 					);
 
@@ -82,15 +84,11 @@ public class SampleUI implements InventoryUI {
 			//1から3番目までのスロットに適用される設定
 			l.put(s -> {
 				s.icon(i -> {
-					ItemStack skull = new ItemStack(Material.PLAYER_HEAD);
-					SkullMeta meta = (SkullMeta) skull.getItemMeta();
-					meta.setOwningPlayer(player);
-					skull.setItemMeta(meta);
-
-					//ItemStackをベースアイテムとする
-					i.basedItemStack = skull;
+					//ベースアイテムを指定する
+					//スカルヘッドの生成はSkullを使うと楽出来る
+					i.basedItemStack = Skull.createFrom(player);
 				});
-				//複数のスロット番号を指定する場合はIntStreamを使うと良い
+				//続き番号を指定する場合はIntStreamを使うと良い
 			}, IntStream.range(1, 4));
 
 			//スロット番号4にアニメーションスロットとして適用され、20ticksの間隔でアイコンが更新される
@@ -127,7 +125,7 @@ public class SampleUI implements InventoryUI {
 			//UIが閉じられた時に実行される処理
 			l.onClose(e -> player.stopSound(Sound.MUSIC_DISC_MELLOHI));
 
-			//UIの表示中のクリック時に実行される処理
+			//クリック時に実行される処理
 			l.onClick(e -> {
 				//インベントリ外か判定する事も可能
 				if(e.isOutOfInventory()) playSound(player, Sound.BLOCK_ANVIL_PLACE, 1, 1);
