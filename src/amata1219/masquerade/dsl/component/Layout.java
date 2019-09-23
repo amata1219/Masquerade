@@ -12,7 +12,7 @@ import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 
-import amata1219.masquerade.async.Async.AsyncTask;
+import amata1219.masquerade.async.AsyncTask;
 import amata1219.masquerade.effect.Effect;
 import amata1219.masquerade.event.ClickEvent;
 import amata1219.masquerade.event.CloseEvent;
