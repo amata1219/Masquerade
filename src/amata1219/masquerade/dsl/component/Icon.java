@@ -1,7 +1,6 @@
 package amata1219.masquerade.dsl.component;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -19,6 +18,7 @@ import com.google.common.collect.Iterables;
 
 import amata1219.masquerade.effect.Effect;
 import amata1219.masquerade.enchantment.GleamEnchantment;
+import amata1219.masquerade.text.Text;
 
 public class Icon {
 
@@ -50,8 +50,12 @@ public class Icon {
 		return item;
 	}
 
-	public void lore(String... lore){
-		this.lore.addAll(Arrays.asList(lore));
+	public void lore(String... strs){
+		for(String str : strs) lore.add(str);
+	}
+	
+	public void lore(Text... texts){
+		for(Text text : texts) text.accept(lore::add);
 	}
 
 	public void enchant(Enchantment enchantment, int level){
@@ -63,7 +67,7 @@ public class Icon {
 	}
 
 	public void flag(ItemFlag... flags){
-		this.flags.addAll(Arrays.asList(flags));
+		for(ItemFlag flag : flags) this.flags.add(flag);
 	}
 
 }

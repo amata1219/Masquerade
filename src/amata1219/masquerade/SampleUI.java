@@ -59,12 +59,12 @@ public class SampleUI implements InventoryUI {
 
 					//説明文
 					i.lore(
-						"Level @ " + player.getLevel(),
+						Text.of("Level @ %s").apply(player.getLevel()),
 						
 						//装飾コードや複数の結合演算子を用いる場合はTextを使用すると楽に記述出来る
 						//視認性向上の為に装飾コードは&とし、その左右1文字分には-を置けるがそれは実際には表示されない
 						//§fRank in world §7@ §b0
-						Text.of("&f-Rank in %s &7-@ &b-%s").color().format(player.getWorld().getName(), player.getLevel()).toString()
+						Text.of("&f-Rank in %s &7-@ &b-%s").apply(player.getWorld().getName(), player.getLevel())
 					);
 
 					//エンチャントの追加
