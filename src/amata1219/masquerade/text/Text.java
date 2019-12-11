@@ -1,5 +1,6 @@
 package amata1219.masquerade.text;
 
+import java.util.Objects;
 import java.util.function.Consumer;
 
 public class Text {
@@ -15,13 +16,7 @@ public class Text {
 		return of("");
 	}
 	
-	private String text;
-	
-	private Text(String text){
-		this.text = coloring(text);
-	}
-	
-	private static String coloring(String text){
+	public static String color(String text){
 		char[] characters = text.toCharArray();
 
 		for(int i = 0; i < characters.length - 1; i++){
@@ -44,10 +39,14 @@ public class Text {
 
 		return new String(characters).replace(NULL, "");
 	}
+	private String text;
 	
-	public Text apply(Object... objects){
-		text = String.format(text, objects);
-		return this;
+	private Text(String text){
+		this.text = color(Objects.requireNonNull(text));
+	}
+	
+	public String apply(Object... objects){
+		return String.format(text, objects);
 	}
 	
 	public void accept(Consumer<String> action){
