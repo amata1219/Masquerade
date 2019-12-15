@@ -9,7 +9,7 @@ public class Text {
 	private static final String NULL = String.valueOf(Character.MIN_VALUE);
 	
 	public static Text of(String text){
-		return new Text(text);
+		return new Text(color(text));
 	}
 	
 	public static Text empty(){
@@ -39,18 +39,29 @@ public class Text {
 
 		return new String(characters).replace(NULL, "");
 	}
-	private String text;
 	
-	private Text(String text){
-		this.text = color(Objects.requireNonNull(text));
+	protected String text;
+	
+	protected Text(String text){
+		this.text = Objects.requireNonNull(text);
 	}
 	
-	public String apply(Object... objects){
+	public String format(Object... objects){
 		return String.format(text, objects);
+	}
+	
+	public Text apply(Object... objects){
+		text = format(objects);
+		return this;
 	}
 	
 	public void accept(Consumer<String> action){
 		action.accept(text);
+	}
+	
+	@Override
+	public Text clone(){
+		return new Text(text);
 	}
 
 }
