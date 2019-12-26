@@ -33,7 +33,8 @@ public class Icon {
 	public Effect<ItemStack> raw;
 
 	public ItemStack toItemStack(){
-		ItemStack item = new ItemStack(material, amount);
+		ItemStack item = basedItemStack != null ? basedItemStack : new ItemStack(material);
+		basedItemStack.setAmount(amount);
 
 		ItemMeta meta = item.getItemMeta();
 		if(meta != null){
