@@ -9,8 +9,8 @@ BukkitのInventoryHolderを用いた対応付けによりInventoryUIを宣言的
 - Spigot 1.13.2
 
 ## 参考
-blackbrackenさんのDrainageをベースに製作しました。
-https://github.com/blackbracken/Drainage
+blackbrackenさんのDrainageをベースに製作しました。  
+https://github.com/blackbracken/Drainage  
 
 ## 実装例
 ```Java
