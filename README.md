@@ -3,11 +3,14 @@
 
 BukkitのInventoryHolderを用いた対応付けによりInventoryUIを宣言的に定義可能としました。  
 各オブジェクトに一対一で処理を定義するため高い可読性と拡張性を併せ持った設計が出来ます。  
-TextやSkull、Tuple、Maybe、SafeCast、Reflection等の便利クラスを同梱し簡潔な実装をサポートします。
 
 ## 環境
 - Java8
 - Spigot 1.13.2
+
+## 参考
+blackbrackenさんのDrainageをベースに製作しました。
+https://github.com/blackbracken/Drainage
 
 ## 実装例
 ```Java
